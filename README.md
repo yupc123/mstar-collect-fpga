@@ -14,7 +14,7 @@
 
 ## 实物照片
 
-![数据采集器实物](hdl/collect_picture.png)
+[![数据采集器实物](hdl/collect_picture.png)](https://magicstar.taobao.com/)
 
 ## 相关项目
 

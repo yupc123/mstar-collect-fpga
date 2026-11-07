@@ -3,6 +3,9 @@ tand_udp_Runs/
 log/
 chip_debugger/
 
+# Local docs (not for repo)
+docs/
+
 # Lock / temp / empty placeholder files
 .lock.f
 .recent_user_depot.ini
