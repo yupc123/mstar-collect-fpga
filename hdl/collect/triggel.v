@@ -50,7 +50,7 @@ module triggel
 
 reg [POSITION_WIDTH-1:0] r_position_counter;
 reg r_triger_flg;					//触发标志
-reg [POSITION_WIDTH-1:0] 	trig_relative_position_t;
+reg [POSITION_WIDTH-1:0] 	trig_relative_position_t=0;
 //reg [AD_DATWIDTH-1:0] 	r_ADdat_temp;		//ADdat信号延时1个CLK
 //reg [15:0] 	r_ADdat_temp1;		//ADdat信号延时2个CLK
 //reg [15:0] 	r_ADdat_temp2;		//ADdat信号延时3个CLK
