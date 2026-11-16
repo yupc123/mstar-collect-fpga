@@ -13,4 +13,5 @@ set_max_delay -from [get_clocks {w_clk100M}] -to [get_clocks {w_clk50M}] -datapa
 set_max_delay -from [get_clocks {w_clk50M}] -to [get_clocks {w_clk100M}] -datapath_only 40.000
 set_max_delay -from [get_clocks {w_clk100M}] -to [get_clocks {MIS_DDR_u/usr_clk}] -datapath_only 15.000
 set_max_delay -from [get_clocks {MIS_DDR_u/usr_clk}] -to [get_clocks {w_clk100M}] -datapath_only 10.000
-set_max_delay -from [get_clocks {mstar_ethernet_bridge_u0/mstar_rgmii_u0/rgmii_interface_u0/u_PH1P_PHY_LCLK.clkout}] -to [get_clocks {mstar_ethernet_bridge_u0/mstar_rgmii_u0/rgmii_interface_u0/u_PH1P_PHY_LCLK.clkout}] 8.000
+#set_max_delay -from [get_clocks {mstar_ethernet_bridge_u0/mstar_rgmii_u0/rgmii_interface_u0/u_PH1P_PHY_LCLK.clkout}] -to [get_clocks {mstar_ethernet_bridge_u0/mstar_rgmii_u0/rgmii_interface_u0/u_PH1P_PHY_LCLK.clkout}] 8.000
+set_max_delay -from [get_clocks {mstar_ethernet_bridge_u0/al_b8c651cc.clkout}] -to [get_clocks {mstar_ethernet_bridge_u0/al_b8c651cc.clkout}] 8.000
