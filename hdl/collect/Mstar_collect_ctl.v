@@ -94,7 +94,12 @@ module Mstar_collect_ctrl#(
 //  );
 	
 	 reg [POART_WIDTH-1:0] out_io;
-	 assign out_port=~out_io;
+     reg [15:0] puls_cnt=0;
+	 assign out_port[3:0]=~out_io;
+    always @(posedge ACLK)begin
+        puls_cnt<=puls_cnt+1'b1;
+    end
+    assign out_port[5:4]= puls_cnt[14:13];
 	localparam     WRIDLE               = 2'd0,
                     WRDATA               = 2'd1,
                     WRRESP               = 2'd2,
