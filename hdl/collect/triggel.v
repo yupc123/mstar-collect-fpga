@@ -50,6 +50,7 @@ module triggel
 
 reg [POSITION_WIDTH-1:0] r_position_counter;
 reg r_triger_flg;					//触发标志
+reg [POSITION_WIDTH-1:0] 	trig_relative_position_t;
 //reg [AD_DATWIDTH-1:0] 	r_ADdat_temp;		//ADdat信号延时1个CLK
 //reg [15:0] 	r_ADdat_temp1;		//ADdat信号延时2个CLK
 //reg [15:0] 	r_ADdat_temp2;		//ADdat信号延时3个CLK
@@ -128,7 +129,7 @@ begin
     end else begin
         _in_trigflg<=in_trigflg;
         if(in_trigflg_up)
-            trig_relative_position<=r_position_counter;
+            trig_relative_position<=trig_relative_position_t;
     end
 end
 always @(posedge clk_50M)
@@ -173,6 +174,7 @@ begin
 		end
 		else if(r_colection_en&&(r_colection_end==0))
 		begin
+            trig_relative_position_t<=r_position_counter;
 			if(r_position_counter<w_max_position)
 				r_position_counter<=r_position_counter+1'b1;
 			else
