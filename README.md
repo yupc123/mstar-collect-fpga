@@ -18,6 +18,8 @@ This project targets an 8-channel AD data acquisition system. Sampled data is bu
 
 [![Data acquisition board](hdl/collect_picture.png)](https://magicstar.taobao.com/)
 
+> Photo not loading? [View the full-size image on Gitee](https://gitee.com/mstar_ypc/mstar-collect-fpga/raw/master/hdl/collect_picture.png).
+
 ## Related Projects
 
 - [MStar Oscilloscope](https://gitee.com/mstar_ypc/mstar-oscilloscope) — companion host-side waveform viewer for this FPGA design

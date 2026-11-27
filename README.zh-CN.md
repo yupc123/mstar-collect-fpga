@@ -18,6 +18,8 @@
 
 [![数据采集器实物](hdl/collect_picture.png)](https://magicstar.taobao.com/)
 
+> 图片无法显示？[在 Gitee 查看原图](https://gitee.com/mstar_ypc/mstar-collect-fpga/raw/master/hdl/collect_picture.png)。
+
 ## 相关项目
 
 - [GitHub 镜像仓库](https://github.com/yupc123/mstar-collect-fpga) — 本工程的 GitHub 镜像，主仓库位于 Gitee
