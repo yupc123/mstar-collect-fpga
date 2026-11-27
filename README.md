@@ -1,37 +1,39 @@
 # MStar Collect FPGA
 
-基于安路科技 (Anlogic) PH1 FPGA 的多数据采集设备端 FPGA 工程，使用 Tang Dynasty IDE 开发。
+English | [简体中文](README.zh-CN.md)
 
-## 功能概述
+An open-source multi-channel data acquisition reference design for Anlogic PH1 FPGAs, built with the Tang Dynasty IDE.
 
-本工程设计用于多通道 AD 数据采集系统，通过以太网 (RGMII) 将采集数据经 UDP 传输至上位机。主要功能包括：
+## Overview
 
-- **多通道 AD 采集**：支持 8 通道 AD 数据采集（CM2268 等 ADC 芯片驱动）
-- **DDR 缓存**：通过 DDR 接口实现采集数据的 DMA 缓存
-- **以太网传输**：基于 UDP/IP 协议栈，经 RGMII 千兆以太网输出数据
-- **触发控制**：支持外部触发信号输入/输出
-- **AXI Lite 寄存器接口**：上位机可通过 AXI Lite 总线配置采集参数
+This project targets an 8-channel AD data acquisition system. Sampled data is buffered in DDR through DMA and streamed to a host PC over gigabit Ethernet (RGMII) using UDP. Key features:
 
-## 实物照片
+- **8-channel AD acquisition**: ADC drivers for CM2268 and similar chips
+- **DDR buffering**: acquisition data cached in DDR via AXI DMA
+- **Gigabit Ethernet output**: UDP/IP stack over RGMII
+- **Trigger control**: external trigger input and output
+- **AXI Lite register interface**: host-configurable acquisition parameters
 
-[![数据采集器实物](hdl/collect_picture.png)](https://magicstar.taobao.com/)
+## Hardware
 
-## 相关项目
+[![Data acquisition board](hdl/collect_picture.png)](https://magicstar.taobao.com/)
 
-- [GitHub 镜像仓库](https://github.com/yupc123/mstar-collect-fpga) — 本工程的 GitHub 镜像，主仓库位于 Gitee
-- [MStar Oscilloscope 上位机示波器](https://gitee.com/mstar_ypc/mstar-oscilloscope) — 与本 FPGA 工程配套的上位机数据采集与波形显示软件
+## Related Projects
 
-## 工程结构
+- [MStar Oscilloscope](https://gitee.com/mstar_ypc/mstar-oscilloscope) — companion host-side waveform viewer for this FPGA design
+- Gitee main repository: [https://gitee.com/mstar_ypc/mstar-collect-fpga](https://gitee.com/mstar_ypc/mstar-collect-fpga)
+
+## Repository Structure
 
 ```
 tand_udp/
 ├── hdl/
-│   ├── mstar_udp_top.v          # 顶层模块
-│   ├── ad_driver/               # AD 芯片驱动
+│   ├── mstar_udp_top.v          # Top-level module
+│   ├── ad_driver/               # ADC chip drivers
 │   │   ├── adchip_ctrl.v
 │   │   ├── cm2268_drv.v
 │   │   └── driver_cm2268.v
-│   ├── collect/                 # 数据采集逻辑
+│   ├── collect/                 # Acquisition logic
 │   │   ├── mstar_collect.v
 │   │   ├── Mstar_collect_ctl.v
 │   │   ├── mstar_collectdma.v
@@ -40,69 +42,69 @@ tand_udp/
 │   │   ├── get_extreflg.v
 │   │   ├── onedmafifo_con.v
 │   │   └── triggel.v
-│   ├── axi_dma/                 # AXI DMA 读写主机
+│   ├── axi_dma/                 # AXI DMA read/write masters
 │   │   ├── axi_dma_example_axi_read_master.sv
 │   │   ├── axi_dma_example_axi_write_master.sv
 │   │   └── axi_dma_example_counter.sv
-│   ├── axi_io/                  # AXI Lite 寄存器 IO
+│   ├── axi_io/                  # AXI Lite register interface
 │   │   ├── mstar_axifulltopaxi.v
 │   │   └── mstar_axilite_io.v
-│   ├── udpip/                   # 以太网桥接 IP (加密)
+│   ├── udpip/                   # Ethernet bridge IP (encrypted)
 │   │   └── mstar_ethernet_bridge.ipr.v
-│   ├── sync/                    # 跨时钟域同步
+│   ├── sync/                    # Clock-domain crossing and reset sync
 │   │   ├── sync_block.v
 │   │   ├── reset_sync.v
 │   │   ├── resetn_sync.v
 │   │   └── get_singer_edge.v
-│   └── constraint/              # 约束文件
-│       ├── mstar_udp_adc.adc    # 引脚约束
-│       └── mstar_udp_sdc.sdc    # 时序约束
-├── al_ip/                       # 安路 IP 核
-│   ├── MIS_DDR/                 # DDR 控制器
-│   ├── AXIfull_Matrix/          # AXI Full 互联矩阵
-│   ├── AXI_lite_Matrix/         # AXI Lite 互联矩阵
-│   ├── AXI_Clock_Converter_ddr/ # AXI 时钟域转换
-│   ├── axis_dmadat_fifo/        # DMA 数据 FIFO
-│   ├── axis_mac_rxfifo/         # MAC 接收 FIFO
-│   ├── axis_macdat_fifo/        # MAC 数据 FIFO
-│   ├── fifo_axis_parkenumber/   # 包计数 FIFO
-│   ├── fifo_axis_rullcmd/       # 命令 FIFO
-│   └── sysPLL/                  # 系统 PLL
-├── chip_debugger/               # 调试配置
-├── tand_udp.al                  # Tang Dynasty 工程文件
-└── tand_udp_devicesetting.cfg   # 器件配置
+│   └── constraint/              # Constraint files
+│       ├── mstar_udp_adc.adc    # Pin constraints
+│       └── mstar_udp_sdc.sdc    # Timing constraints
+├── al_ip/                       # Anlogic IP cores
+│   ├── MIS_DDR/                 # DDR controller
+│   ├── AXIfull_Matrix/          # AXI Full interconnect
+│   ├── AXI_lite_Matrix/         # AXI Lite interconnect
+│   ├── AXI_Clock_Converter_ddr/ # AXI clock-domain converter
+│   ├── axis_dmadat_fifo/        # DMA data FIFO
+│   ├── axis_mac_rxfifo/         # MAC receive FIFO
+│   ├── axis_macdat_fifo/        # MAC data FIFO
+│   ├── fifo_axis_parkenumber/   # Packet counter FIFO
+│   ├── fifo_axis_rullcmd/       # Command FIFO
+│   └── sysPLL/                  # System PLL
+├── chip_debugger/               # Debug configuration
+├── tand_udp.al                  # Tang Dynasty project file
+└── tand_udp_devicesetting.cfg   # Device settings
 ```
 
-## 目标器件
+## Target Device
 
 - **FPGA**: Anlogic PH1P35MDG324-3
 - **IDE**: Tang Dynasty ≥ 6.2
 
-## 构建说明
+## Build
 
-1. 安装 Tang Dynasty IDE (≥ 6.2)
-2. 打开 `tand_udp.al` 工程文件
-3. 确认目标器件为 PH1P35MDG324-3
-4. 执行综合 → 布局布线 → 生成比特流
+1. Install the Tang Dynasty IDE (≥ 6.2)
+2. Open the `tand_udp.al` project file
+3. Confirm the target device is set to PH1P35MDG324-3
+4. Run synthesis → place & route → generate bitstream
 
-## 加密 IP 说明
+## Encrypted IP Notice
 
-`hdl/udpip/mstar_ethernet_bridge.ipr.v` 为加密 IP 网表，实现以太网桥接功能（含 MAC 层、UDP/IP 协议栈、AXI 总线接口等）。该 IP 以加密形式开源，提供功能接口但不开放源码。
+`hdl/udpip/mstar_ethernet_bridge.ipr.v` is a pre-synthesized encrypted netlist implementing the Ethernet bridge (MAC layer, UDP/IP stack, AXI bus interface, etc.). The IP is distributed in encrypted form: the interface is documented and usable, while the RTL source is not disclosed.
 
-## 联系方式
+## Contact
 
 - Company: Hangzhou Magicstar Technology Co., Ltd.
 - Email: yupc123@qq.com
 - Phone: +86-13867435883
 - Taobao: https://magicstar.taobao.com/
 
-## 许可证
+## License
 
-详见 [LICENSE](LICENSE) 文件。
+Licensed under GPL-3.0-or-later. See the [LICENSE](LICENSE) file for details.
 
-## 更新日志
+## Changelog
 
 ### v1.0 (2026-10-15)
-- 首次开源发布
-- 添加全部 RTL 源码文件头（版权声明 + SPDX 许可证标识）
-- 添加采集器实物照片
+- Initial open-source release
+- Added license headers (copyright + SPDX identifier) to all RTL sources
+- Added photo of the acquisition board
