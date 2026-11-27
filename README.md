@@ -18,6 +18,7 @@
 
 ## 相关项目
 
+- [GitHub 镜像仓库](https://github.com/yupc123/mstar-collect-fpga) — 本工程的 GitHub 镜像，主仓库位于 Gitee
 - [MStar Oscilloscope 上位机示波器](https://gitee.com/mstar_ypc/mstar-oscilloscope) — 与本 FPGA 工程配套的上位机数据采集与波形显示软件
 
 ## 工程结构
