@@ -6,6 +6,14 @@ chip_debugger/
 # Local docs (not for repo)
 docs/
 
+# hdl/time/ stays private as a whole directory, not just the RTL: the side
+# project used to synthesize the secret netlist also drops .al / .xml / Runs
+# artifacts in there, and those leak paths and parameters on their own.
+# Written as "hdl/time/*" rather than "hdl/time/" so that a later exception can
+# be added as a "!" line here - but beware: git can only re-include a file that
+# sits directly in hdl/time/, because "*" excludes subdirectories wholesale.
+hdl/time/*
+
 # Lock / temp / empty placeholder files
 .lock.f
 .recent_user_depot.ini

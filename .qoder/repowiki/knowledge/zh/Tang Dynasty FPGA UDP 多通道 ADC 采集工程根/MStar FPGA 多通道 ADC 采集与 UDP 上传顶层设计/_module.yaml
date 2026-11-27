@@ -1,0 +1,8 @@
+schema_version: 1
+module_path: hdl_source
+title: MStar FPGA 多通道 ADC 采集与 UDP 上传顶层设计
+scope:
+    - hdl/
+source_files: []
+depends_on: []
+related_to: []

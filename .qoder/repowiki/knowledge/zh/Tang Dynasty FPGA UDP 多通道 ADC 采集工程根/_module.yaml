@@ -1,6 +1,6 @@
 schema_version: 1
 module_path: ""
-title: MStar 多通道 ADC 采集与 UDP 传输 FPGA 工程
+title: Tang Dynasty FPGA UDP 多通道 ADC 采集工程根
 scope:
     - README.md
     - .gitignore

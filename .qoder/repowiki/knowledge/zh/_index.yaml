@@ -3,11 +3,11 @@ schema_version: 1
 locale: zh-CN
 branch: master
 nodes_managed: true
-exported_at: "2026-10-16T04:09:06Z"
+exported_at: "2026-11-17T00:41:57Z"
 modules:
     "":
-        dir_name: MStar 多通道 ADC 采集与 UDP 传输 FPGA 工程
-        title: MStar 多通道 ADC 采集与 UDP 传输 FPGA 工程
+        dir_name: Tang Dynasty FPGA UDP 多通道 ADC 采集工程根
+        title: Tang Dynasty FPGA UDP 多通道 ADC 采集工程根
         scope:
             - README.md
             - .gitignore
@@ -21,15 +21,14 @@ modules:
         depends_on: []
         related_to: []
     hdl_source:
-        dir_name: 多通道 ADC 数据采集与 UDP 传输 FPGA 顶层
-        title: 多通道 ADC 数据采集与 UDP 传输 FPGA 顶层
+        dir_name: MStar FPGA 多通道 ADC 采集与 UDP 上传顶层设计
+        title: MStar FPGA 多通道 ADC 采集与 UDP 上传顶层设计
         scope:
             - hdl/
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: ip_cores
+        related_to: []
     ip_cores:
         dir_name: Anlogic P1 平台 IP 核集合（DDR_MAC_AXI 子系统）
         title: Anlogic P1 平台 IP 核集合（DDR/MAC/AXI 子系统）
@@ -38,5 +37,4 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: hdl_source
+        related_to: []
